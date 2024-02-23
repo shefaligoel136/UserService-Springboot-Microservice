@@ -3,6 +3,7 @@ package com.example.userservice.Controllers;
 import com.example.userservice.Dtos.LoginRequestDTO;
 import com.example.userservice.Dtos.LogoutRequestDTO;
 import com.example.userservice.Dtos.SignupRequestDTO;
+import com.example.userservice.Dtos.UserDTO;
 import com.example.userservice.Models.Token;
 import com.example.userservice.Models.User;
 import com.example.userservice.Service.UserService;
@@ -48,8 +49,8 @@ public class UserController {
     }
 
     @PostMapping("/validate/{token}")
-    public User validateToken(@PathVariable("token") @NonNull String token){
-        return userService.validateToken(token);
+    public UserDTO validateToken(@PathVariable("token") @NonNull String token){
+        return UserDTO.from(userService.validateToken(token));
     }
 
 
