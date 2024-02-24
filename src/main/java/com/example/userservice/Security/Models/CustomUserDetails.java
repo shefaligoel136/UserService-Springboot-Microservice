@@ -3,6 +3,7 @@ package com.example.userservice.Security.Models;
 import com.example.userservice.Models.Role;
 import com.example.userservice.Models.User;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +21,8 @@ public class CustomUserDetails implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
+    //        return true;
+    private Long userId;
 
     public CustomUserDetails(){}
 
@@ -37,6 +40,7 @@ public class CustomUserDetails implements UserDetails {
         }
 
         this.authorities = grantedAuthorities;
+        this.userId = user.getId();
     }
 
     @Override
@@ -84,5 +88,13 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
 //        return true;
         return enabled;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
