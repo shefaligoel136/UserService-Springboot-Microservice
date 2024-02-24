@@ -34,11 +34,11 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public User signUp(@RequestBody SignupRequestDTO signupRequest){
+    public UserDTO signUp(@RequestBody SignupRequestDTO signupRequest){
         String email = signupRequest.getEmail();
         String password = signupRequest.getPassword();
         String name = signupRequest.getName();
-        return userService.signup(email,password,name);
+        return UserDTO.from(userService.signup(email,password,name));
     }
 
     @PostMapping("/logout")

@@ -3,12 +3,16 @@ package com.example.userservice.Dtos;
 import com.example.userservice.Models.Role;
 import com.example.userservice.Models.User;
 import jakarta.persistence.ManyToMany;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-public class UserDTO {private String name;
+@Getter
+@Setter
+public class UserDTO {
+    private String name;
     private String email;
-    private String hashedPassword;
     private List<Role> roles;
     private boolean isEmailVerified;
 

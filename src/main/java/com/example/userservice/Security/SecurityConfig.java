@@ -71,8 +71,10 @@ public class SecurityConfig {
             throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
+                .csrf().disable()
+                .cors().disable()
                 // Form login handles the redirect to the login page from the
                 // authorization server filter chain
                 .formLogin(Customizer.withDefaults());
@@ -80,22 +82,22 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-//        UserDetails userDetails = User.withDefaultPasswordEncoder()
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+////        UserDetails userDetails = User.withDefaultPasswordEncoder()
+////                .username("user")
+////                .password("password")
+////                .roles("USER")
+////                .build();
+//
+//        UserDetails userDetails = User.builder()
 //                .username("user")
-//                .password("password")
+//                .password("$2a$16$XLICBCEmekbJUk5ch0bO4OerUcEKM/PQWuF0w0AkjSjuddTG6xGSS")
 //                .roles("USER")
 //                .build();
-
-        UserDetails userDetails = User.builder()
-                .username("user")
-                .password("$2a$16$XLICBCEmekbJUk5ch0bO4OerUcEKM/PQWuF0w0AkjSjuddTG6xGSS")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(userDetails);
-    }
+//
+//        return new InMemoryUserDetailsManager(userDetails);
+//    }
 
 //    @Bean
 //    public RegisteredClientRepository registeredClientRepository() {
